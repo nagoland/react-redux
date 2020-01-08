@@ -1,34 +1,48 @@
-import React, {Component} from "react"
+import React, { Component } from "react"
 import { connect } from "react-redux"
-import Memo from "./memo/Memo"
-import AddForm from "./memo/AddForm"
-import FindForm from "./memo/FindForm"
-import DelForm  from "./memo/DelForm"
+import AddForm from "./todo/AddForm"
+import Done from "./todo/Done"
+import Incomplete from "./todo/Incomplete"
 
-class App extends Component{
+
+// code > 設定　> ユーザースニペット
+
+
+class App extends Component {
     td = {
         width: "250px"
     }
+    style = {
+        display: "flex"
+    }
+    IStyle = {
+        width: "400px",
+        backgroundColor: "yellow",
+        height: "400px"
+        
+    }
+    DStyle = {
+        width: "400px",
+        backgroundColor: "yellow",
+    }
+
     constructor(props){
         super(props)
     }
+
     render(){
-        return(
+        return (
             <div>
-                <h1>memo</h1>
+                <h1>Todo</h1>
                 <AddForm />
                 <hr />
-                <table><tbody><tr>
-                    <td style={this.td}><FindForm /></td>
-                    <td style={this.td}><DelForm /></td>
-                </tr></tbody></table>
-                <Memo />
+                <div style={this.style} >
+                <Incomplete style={this.IStyle} />
+                <Done style={this.DStyle} />
+                </div>
             </div>
         )
     }
 }
 
-
-
-
-export default connect() (App)
+export default connect ()(App)

@@ -1,12 +1,13 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
 import { Provider } from "react-redux"
-import MemoStore from "./memo/Store"
-const root = document.getElementById("root")
+import TodoStore from "./todo/Store"
+import App from "./App"
+
 
 ReactDOM.render(
-    <Provider store={MemoStore}>
+    <Provider store={TodoStore}>
         <App />
-    </Provider>,root
+    </Provider>,
+    document.getElementById("root")
 )

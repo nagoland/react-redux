@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { addMemo } from "./Store"
+import { addTodo } from "./Store"
 
 class AddForm extends Component {
     input = {
@@ -15,34 +15,38 @@ class AddForm extends Component {
         padding: "2px 10px"
     }
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            message: ""
+            message: "",
+            num: 0
+
         }
         this.doChange = this.doChange.bind(this)
         this.doAction = this.doAction.bind(this)
     }
 
-    doChange(e) {
+    doChange(e){
         this.setState({
-            message: e.target.value
+            message: e.target.value,
+            num: this.state.num+ 1
         })
     }
 
     doAction(e){
         e.preventDefault()
-        let action = addMemo(this.state.message)
+        let action = addTodo(this.state.message,this.state.index)
         this.props.dispatch(action)
-        this.setState({
-            message: ""
-        })
+                this.setState({
+                    message: "",
+                })
     }
+
     render(){
         return(
             <div>
                 <p style={this.message}>{this.props.message}</p>
-                <form　onSubmit={this.doAction}>
+                <form onSubmit={this.doAction}>
                     <input type="text" size="40" onChange={this.doChange}
                     style={this.input} value={this.state.message} required />
                     <input type="submit" style={this.btn} value="Add" />
@@ -50,7 +54,6 @@ class AddForm extends Component {
             </div>
         )
     }
-
 }
 
 export default connect((state)=>state)(AddForm)
